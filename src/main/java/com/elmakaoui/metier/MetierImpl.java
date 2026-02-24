@@ -1,7 +1,12 @@
 package com.elmakaoui.metier;
 
 import com.elmakaoui.dao.IDao;
+import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.beans.factory.annotation.Qualifier;
+import org.springframework.stereotype.Component;
+import org.springframework.stereotype.Service;
 
+@Service("metier")
 public class MetierImpl implements IMetier{
     private IDao dao; // Couplage faible
 
@@ -11,12 +16,11 @@ public class MetierImpl implements IMetier{
      * Au moment de l'instanciation
      */
 
-    public MetierImpl(IDao dao) {
+    public MetierImpl(@Qualifier("d2") IDao dao) {
         this.dao = dao;
     }
 
-    public MetierImpl() {
-    }
+
 
     @Override
     public double calcul() {
